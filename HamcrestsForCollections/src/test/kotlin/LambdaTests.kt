@@ -32,9 +32,9 @@ class ListHamcrestTestsKtTest {
     fun testAllIElementsInList(){
         val collection = listOf("ab", "cd", "ef")
         assertThat(collection, contains("ab", "cd", "ef"))
-        // out of order
+        // out of order:
         assertThat(collection, containsInAnyOrder("ab", "ef", "cd"))
-        // too many elements
+        // too many elements:
         assertThat(collection, not(contains("ab", "cd", "ef", "gh")))
     }
 
@@ -51,9 +51,6 @@ class ListHamcrestTestsKtTest {
     fun checkListSize(){
         val collection = listOf(1, 2, 3, 4, 5)
         assertThat(collection, hasSize(5))
-        // ToDo: figure out how to use iterable in kotlin
-        //assertThat(collection, Matchers.<String> iterableWithSize(4))
-
     }
 
     /* ----------------- JoinToString ----------------*/
@@ -63,6 +60,7 @@ class ListHamcrestTestsKtTest {
         val list1: String = collection.joinToString(" ") { "[$it]" }
         assertEquals(list1,"[a] [b] [c] [d]")
 
+        // provide lambda as a named argument:
         val joinedList = list.joinToString(" ",
             transform = { "[$it]" })
         assertEquals("[ab] [cd] [ef] [gh]", joinedList)
